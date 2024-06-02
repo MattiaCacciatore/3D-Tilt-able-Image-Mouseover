@@ -1,0 +1,73 @@
+/* 
+* Made by Mattia Cacciatore S4850100 <cacciatore1995@hotmail.it> CS student at UniGe - Italy. 
+* Inspiration: Kevin Powell https://youtu.be/Z-3tPXf9a7M?si=zRV7p468wSbvko9v
+*/
+body{
+  min-block-size: 100dvh;
+  display: grid;
+  place-items: center;
+}
+
+.tiltable{
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  border-radius: 20px;
+  width: 359px;
+  height: 498px;
+  position: relative;
+}
+/* It creates a pseudo-element that is the FIRST child of the selected element. */
+.tiltable::before{
+  /* Must be specified otherwhise it would be evaluate as display:none. */
+  content: '';
+
+  position: absolute;
+  border-radius: inherit;
+  /* It sets this element right behind the main one. */
+  z-index: -1;
+  inset: -1rem;
+  /* Viridis: color's blind friendly palette. */
+  background: linear-gradient(135deg, 
+    #fde725,
+    #c2df23,
+    #86d549,
+    #52c569,
+    #2ab07f,
+    #1e9b8a,
+    #25858e,
+    #2d708e,
+    #38588c,
+    #433e85,
+    #482173,
+    #440154
+  );
+  /* It puts the background's palette slightly back the original image. */
+  transform: translateZ(-1rem);
+}
+
+.image{
+  display: block;
+  position: absolute;
+  border-radius: inherit;
+  /* Dimension of the image. */
+  width: 359px;
+  height: 498px;
+}
+
+div:hover{
+  transform-style: preserve-3d;
+  transform: perspective(5000px) rotateY(var(--rotateX)) rotateX(var(--rotateY)) scale(1.2);
+  transition: transform 0.1s;
+}
+
+.foil{
+  position: relative;
+  border-radius: inherit;
+  /* It sets how an element's content should blend with the content of the element's parent and the element's background. */
+  mix-blend-mode: hard-light;
+  /* It should be semi-transparent. */
+  opacity: 0.6;
+  /* It must overlap the base image. */
+  z-index: 1;
+}
